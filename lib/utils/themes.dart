@@ -4,38 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Light theme for android
 final lightMaterialTheme = ThemeData(
-  applyElevationOverlayColor: false,
-  inputDecorationTheme: InputDecorationTheme(
-    errorBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
-          color: _errorColor,
-        ),
-        borderRadius: BorderRadius.circular(16).r),
-    enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
-          color: _grey,
-        ),
-        borderRadius: BorderRadius.circular(16).r),
-    focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
-          color: _darkGrey,
-        ),
-        borderRadius: BorderRadius.circular(16).r),
-    focusedErrorBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
-          color: _errorColor,
-        ),
-        borderRadius: BorderRadius.circular(16).r),
-  ),
-  brightness: Brightness.light,
-  cardColor: _secondaryColor,
-  colorScheme: ColorScheme.fromSeed(seedColor: _mainColor),
-  dialogBackgroundColor: _lightGrey,
-  scaffoldBackgroundColor: _lightGrey,
-);
-
-// Dark theme configuration for android
-final darkTheme = ThemeData(
     applyElevationOverlayColor: false,
     inputDecorationTheme: InputDecorationTheme(
       errorBorder: OutlineInputBorder(
@@ -59,8 +27,21 @@ final darkTheme = ThemeData(
           ),
           borderRadius: BorderRadius.circular(16).r),
     ),
+    // brightness: Brightness.light,
+    cardColor: _secondaryColor,
+    colorScheme: ColorScheme.fromSeed(seedColor: _mainColor),
+    dialogBackgroundColor: _lightGrey,
+    scaffoldBackgroundColor: _lightGrey,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+            backgroundColor: const MaterialStatePropertyAll(_mainColor),
+            elevation: MaterialStatePropertyAll(0.h),
+            shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16).r)))));
+
+// Dark theme configuration for android
+final darkTheme = lightMaterialTheme.copyWith(
     colorScheme: ColorScheme.fromSeed(seedColor: _textColor),
-    brightness: Brightness.dark,
     cardColor: _secondaryColor,
     scaffoldBackgroundColor: _textColor);
 
