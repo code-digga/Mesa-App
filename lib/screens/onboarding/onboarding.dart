@@ -18,26 +18,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
   var pageController = PageController();
   int pageIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    pageController.addListener(() {
-      pageController.animateToPage(pageIndex + 1,
-          duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
-      pageIndex++;
-      // if (pageIndex < 2) {
-      //   pageController.animateToPage(pageIndex + 1,
-      //       duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
-      //   pageIndex++;
-      // } else {
-      //   pageController.animateToPage(0,
-      //       duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
-      //   pageIndex = 0;
-      // }
-      setState(() {});
-    });
-  }
-
   List<String> imagePaths = [
     'assets/images/onboarding_1.jpg',
     'assets/images/onboarding_2.jpg',
@@ -45,15 +25,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
   ];
 
   List<String> onboardingTitles = [
-    'assets/images/onboarding_1.jpg',
-    'assets/images/onboarding_2.jpg',
-    'assets/images/onboarding_3.jpg',
+    'Find and register \n your courses',
+    'Learn anytime \n and anywhere',
+    'Take exams and assessments',
   ];
 
   List<String> onboardingSubTitles = [
-    'assets/images/onboarding_1.jpg',
-    'assets/images/onboarding_2.jpg',
-    'assets/images/onboarding_3.jpg',
+    'Check out the courses you need \n to register for in the new semester.',
+    'Watch the video lessons for \n all your registered courses on the go!',
+    'Take your examinations and assessments \n conveniently.',
   ];
 
   @override
@@ -80,33 +60,48 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 112.h,
+                  height: 70.h,
                 ),
                 SizedBox(
-                  height: 264.h,
-                  width: 375.w,
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Image.asset('assets/images/onboarding_1.jpg'),
+                  height: 450.h,
+                  child: PageView(
+                    reverse: false,
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: pageController,
+                    children: imagePaths.map((path) {
+                      var index = imagePaths.indexOf(path);
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            height: 264.h,
+                            width: 375.w,
+                            child: FittedBox(
+                              fit: BoxFit.contain,
+                              child: Image.asset(path),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16.h,
+                          ),
+                          CustomText(
+                            text: onboardingTitles[index],
+                            size: 24,
+                            weight: FontWeight.w600,
+                            overflow: TextOverflow.clip,
+                          ),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          CustomText(
+                            text: onboardingSubTitles[index],
+                            size: 14,
+                            overflow: TextOverflow.clip,
+                          ),
+                        ],
+                      );
+                    }).toList(),
                   ),
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                const CustomText(
-                  text: 'Learn anytime \n and anywhere',
-                  size: 24,
-                  weight: FontWeight.w600,
-                  overflow: TextOverflow.clip,
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                const CustomText(
-                  text:
-                      'Quarantine is the perfect time to spend your \n day learning something new, from anywhere!',
-                  size: 14,
-                  overflow: TextOverflow.clip,
                 ),
                 SizedBox(
                   height: 16.h,
@@ -138,7 +133,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     width: 311.w,
                     child: CustomButton(
                       btnText: 'Next',
-                      onTap: () => log('go to next page'),
+                      onTap: () {
+                        if (pageIndex < 2) {
+                          pageController.animateToPage(pageIndex + 1,
+                              duration: const Duration(milliseconds: 10),
+                              curve: Curves.easeInOut);
+                          pageIndex++;
+                          setState(() {});
+                        }
+                      },
                     ))
               ],
             ),
