@@ -14,18 +14,18 @@ class MesaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformProvider(
-      builder: (context) => PlatformTheme(
-        themeMode: ThemeMode.system,
-        materialLightTheme: lightMaterialTheme,
-        materialDarkTheme: darkTheme,
-        cupertinoDarkTheme: iosDarkTheme,
-        cupertinoLightTheme: iosLightTheme,
-        builder: (context) => const ScreenUtilInit(
-          designSize: Size(375, 812),
-          minTextAdapt: true,
-          ensureScreenSize: true,
-          child: PlatformApp(
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      ensureScreenSize: true,
+      child: PlatformProvider(
+        builder: (context) => PlatformTheme(
+          themeMode: ThemeMode.light,
+          materialLightTheme: lightMaterialTheme,
+          materialDarkTheme: darkTheme,
+          cupertinoDarkTheme: iosDarkTheme,
+          cupertinoLightTheme: iosLightTheme,
+          builder: (context) => const PlatformApp(
             localizationsDelegates: [
               DefaultMaterialLocalizations.delegate,
               DefaultWidgetsLocalizations.delegate,
