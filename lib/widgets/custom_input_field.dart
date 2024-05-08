@@ -9,8 +9,8 @@ class CustomInputField extends StatelessWidget {
       required this.fieldController,
       this.fieldHeight,
       this.fieldWidth,
-      required this.isSensitive,
-      required this.hideText,
+      this.isSensitive,
+      this.hideText,
       this.keyboard,
       this.validateFunction,
       required this.autoHints,
@@ -19,7 +19,7 @@ class CustomInputField extends StatelessWidget {
       this.iconBtnPress});
   final TextEditingController fieldController;
   final double? fieldHeight, fieldWidth;
-  final bool isSensitive, hideText;
+  final bool? isSensitive, hideText;
   final TextInputType? keyboard;
   final String? Function(String?)? validateFunction;
   final Iterable<String> autoHints;
@@ -32,8 +32,6 @@ class CustomInputField extends StatelessWidget {
       width: fieldWidth?.w ?? 300.w,
       height: fieldHeight?.h ?? 70.h,
       child: PlatformTextFormField(
-        enableSuggestions: !isSensitive,
-        autocorrect: !isSensitive,
         controller: fieldController,
         keyboardType: keyboard ?? TextInputType.text,
         obscureText: hideText,
@@ -45,19 +43,19 @@ class CustomInputField extends StatelessWidget {
         autofillHints: autoHints,
         material: (_, __) => MaterialTextFormFieldData(
             decoration: InputDecoration(
-          suffix: isSensitive
+          suffix: isSensitive ?? false
               ? PlatformIconButton(
                   onPressed: iconBtnPress,
-                  materialIcon: hideText
+                  materialIcon: hideText ?? false
                       ? const Icon(Icons.visibility)
                       : const Icon(Icons.visibility_off))
               : null,
         )),
         cupertino: (context, platform) => CupertinoTextFormFieldData(
-          prefix: isSensitive
+          prefix: isSensitive ?? false
               ? PlatformIconButton(
                   onPressed: iconBtnPress,
-                  cupertinoIcon: hideText
+                  cupertinoIcon: hideText ?? false
                       ? const Icon(CupertinoIcons.eye)
                       : const Icon(CupertinoIcons.eye_slash))
               : null,
