@@ -136,7 +136,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       onTap: () {
                         if (pageIndex < 2) {
                           pageController.animateToPage(pageIndex + 1,
-                              duration: const Duration(milliseconds: 10),
+                              duration: const Duration(milliseconds: 100),
                               curve: Curves.easeInOut);
                           pageIndex++;
                           setState(() {});
