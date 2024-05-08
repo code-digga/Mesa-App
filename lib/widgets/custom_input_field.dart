@@ -35,15 +35,16 @@ class CustomInputField extends StatelessWidget {
         controller: fieldController,
         keyboardType: keyboard ?? TextInputType.text,
         obscureText: hideText,
-        maxLines: null,
+        maxLines: isSensitive == null || isSensitive == false ? null : 1,
         minLines: null,
         onChanged: onChangeFunc,
         hintText: hintText,
+        // expands: isSensitive == null || isSensitive == false,
         validator: validateFunction,
         autofillHints: autoHints,
         material: (_, __) => MaterialTextFormFieldData(
             decoration: InputDecoration(
-          suffix: isSensitive ?? false
+          suffixIcon: isSensitive ?? false
               ? PlatformIconButton(
                   onPressed: iconBtnPress,
                   materialIcon: hideText ?? false

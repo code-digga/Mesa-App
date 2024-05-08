@@ -9,7 +9,7 @@ final lightMaterialTheme = ThemeData(
     iconButtonTheme: const IconButtonThemeData(
         style: ButtonStyle(iconSize: MaterialStatePropertyAll(25))),
     inputDecorationTheme: InputDecorationTheme(
-        isDense: true,
+        isDense: false,
         errorBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: _errorColor,

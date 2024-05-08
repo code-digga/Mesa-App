@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mesa_app/screens/login/login.dart';
 import 'package:mesa_app/widgets/custom_button.dart';
 import 'package:mesa_app/widgets/custom_text.dart';
 import 'package:mesa_app/widgets/custom_text_button.dart';
@@ -55,9 +54,16 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: CustomTextButton(
-                    title: 'Skip',
-                    onTap: () => log('==================> we good'),
-                  ),
+                      title: 'Skip',
+                      onTap: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            platformPageRoute(
+                              context: context,
+                              builder: (context) => const LoginPage(),
+                            ),
+                            (route) => false);
+                      }),
                 ),
                 SizedBox(
                   height: 70.h,
@@ -140,6 +146,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               curve: Curves.easeInOut);
                           pageIndex++;
                           setState(() {});
+                        } else {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              platformPageRoute(
+                                context: context,
+                                builder: (context) => const LoginPage(),
+                              ),
+                              (route) => false);
                         }
                       },
                     ))

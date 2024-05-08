@@ -1,7 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mesa_app/widgets/custom_button.dart';
 import 'package:mesa_app/widgets/custom_input_field.dart';
 import 'package:mesa_app/widgets/custom_text.dart';
@@ -38,11 +39,14 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               SizedBox(
+                height: 45.h,
+              ),
+              SizedBox(
                 height: 253.h,
                 width: 343.w,
                 child: FittedBox(
                   fit: BoxFit.contain,
-                  child: SvgPicture.asset('assets/images/login_image.svg'),
+                  child: Image.asset('assets/images/login_image.png'),
                 ),
               ),
               SizedBox(
@@ -58,30 +62,39 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const CustomText(
                 text: 'Log in with your school email and password.',
-                size: 24,
-                weight: FontWeight.w500,
+                size: 14,
+                weight: FontWeight.normal,
+                overflow: TextOverflow.clip,
               ),
               SizedBox(
                 height: 20.h,
               ),
               Form(
+                  key: formKey,
                   child: Column(
-                children: [
-                  CustomInputField(
-                      fieldHeight: 53,
-                      fieldWidth: 343,
-                      fieldController: emailController,
-                      autoHints: const [AutofillHints.email]),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                  CustomInputField(
-                      fieldHeight: 53,
-                      fieldWidth: 343,
-                      fieldController: emailController,
-                      autoHints: const [AutofillHints.password]),
-                ],
-              )),
+                    children: [
+                      CustomInputField(
+                          fieldHeight: 53,
+                          hintText: 'Email',
+                          fieldWidth: 343,
+                          fieldController: emailController,
+                          validateFunction: (value) => authValidator(value),
+                          autoHints: const [AutofillHints.email]),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      CustomInputField(
+                          fieldHeight: 53,
+                          hintText: 'Password',
+                          fieldWidth: 343,
+                          fieldController: passwordController,
+                          iconBtnPress: () => togglePasswordVisibility(),
+                          isSensitive: true,
+                          validateFunction: (value) => authValidator(value),
+                          hideText: !showPassword,
+                          autoHints: const [AutofillHints.password]),
+                    ],
+                  )),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 child: CustomTextButton(
@@ -93,7 +106,10 @@ class _LoginPageState extends State<LoginPage> {
                 btnText: 'Log in',
                 btnHeight: 56,
                 btnWidth: 343,
-                onTap: () {},
+                onTap: () async {
+                  var formCorrect = formKey.currentState?.validate();
+                  log('===========> form correct: $formCorrect');
+                },
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.h),
@@ -107,5 +123,16 @@ class _LoginPageState extends State<LoginPage> {
         )),
       ),
     );
+  }
+
+  togglePasswordVisibility() => setState(() {
+        showPassword = !showPassword;
+      });
+
+  String? authValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return '*Required';
+    }
+    return null;
   }
 }
