@@ -1,32 +1,42 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // Light theme for android
 final lightMaterialTheme = ThemeData(
     applyElevationOverlayColor: false,
+    iconButtonTheme: const IconButtonThemeData(
+        style: ButtonStyle(iconSize: MaterialStatePropertyAll(25))),
     inputDecorationTheme: InputDecorationTheme(
-      errorBorder: OutlineInputBorder(
+        isDense: true,
+        errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: _errorColor,
+            ),
+            borderRadius: BorderRadius.circular(16).r),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: _grey,
+            ),
+            borderRadius: BorderRadius.circular(16).r),
+        enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: _grey,
+            ),
+            borderRadius: BorderRadius.circular(16).r),
+        focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: _darkGrey,
+            ),
+            borderRadius: BorderRadius.circular(16).r),
+        focusedErrorBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: _errorColor,
           ),
-          borderRadius: BorderRadius.circular(16).r),
-      enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: _grey,
-          ),
-          borderRadius: BorderRadius.circular(16).r),
-      focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: _darkGrey,
-          ),
-          borderRadius: BorderRadius.circular(16).r),
-      focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: _errorColor,
-          ),
-          borderRadius: BorderRadius.circular(16).r),
-    ),
+          borderRadius: BorderRadius.circular(16).r,
+        ),
+        hintStyle: GoogleFonts.rubik(color: _darkGrey, fontSize: 16.sp)),
     // brightness: Brightness.light,
     cardColor: _secondaryColor,
     colorScheme: ColorScheme.fromSeed(seedColor: _mainColor),
@@ -43,6 +53,9 @@ final lightMaterialTheme = ThemeData(
 final darkTheme = lightMaterialTheme.copyWith(
     colorScheme: ColorScheme.fromSeed(seedColor: _textColor),
     cardColor: _secondaryColor,
+    inputDecorationTheme: InputDecorationTheme(
+        hintStyle: lightMaterialTheme.inputDecorationTheme.hintStyle
+            ?.copyWith(color: _lightGrey)),
     scaffoldBackgroundColor: _textColor);
 
 // light theme configuration for iOS
