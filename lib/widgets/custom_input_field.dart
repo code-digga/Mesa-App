@@ -13,18 +13,18 @@ class CustomInputField extends StatelessWidget {
       this.hideText,
       this.keyboard,
       this.validateFunction,
-      required this.autoHints,
+      this.autoHints,
       this.hintText,
-      required this.onChangeFunc,
+      this.onChangeFunc,
       this.iconBtnPress});
   final TextEditingController fieldController;
   final double? fieldHeight, fieldWidth;
   final bool? isSensitive, hideText;
   final TextInputType? keyboard;
   final String? Function(String?)? validateFunction;
-  final Iterable<String> autoHints;
+  final Iterable<String>? autoHints;
   final String? hintText;
-  final void Function(String?) onChangeFunc;
+  final void Function(String?)? onChangeFunc;
   final void Function()? iconBtnPress;
   @override
   Widget build(BuildContext context) {
