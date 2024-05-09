@@ -30,7 +30,7 @@ class CustomInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: fieldWidth?.w ?? 300.w,
-      height: fieldHeight?.h ?? 70.h,
+      height: fieldHeight?.h ?? 80.h,
       child: PlatformTextFormField(
         controller: fieldController,
         keyboardType: keyboard ?? TextInputType.text,
@@ -39,11 +39,12 @@ class CustomInputField extends StatelessWidget {
         minLines: null,
         onChanged: onChangeFunc,
         hintText: hintText,
-        // expands: isSensitive == null || isSensitive == false,
+        expands: isSensitive == null || isSensitive == false ? true : false,
         validator: validateFunction,
         autofillHints: autoHints,
         material: (_, __) => MaterialTextFormFieldData(
             decoration: InputDecoration(
+          helperText: ' ',
           suffixIcon: isSensitive ?? false
               ? PlatformIconButton(
                   onPressed: iconBtnPress,

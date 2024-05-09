@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mesa_app/screens/onboarding/onboarding.dart';
 import 'package:mesa_app/utils/themes.dart';
+
+import 'screens/login/login.dart';
 
 void main() async {
   runApp(const MesaApp());
@@ -32,7 +33,7 @@ class MesaApp extends StatelessWidget {
               DefaultCupertinoLocalizations.delegate
             ],
             title: 'Mesa',
-            home: OnboardingPage(),
+            home: LoginPage(),
             debugShowCheckedModeBanner: false,
           ),
         ),

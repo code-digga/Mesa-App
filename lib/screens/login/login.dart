@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -74,7 +72,6 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       CustomInputField(
-                          fieldHeight: 53,
                           hintText: 'Email',
                           fieldWidth: 343,
                           fieldController: emailController,
@@ -84,7 +81,6 @@ class _LoginPageState extends State<LoginPage> {
                         height: 16.h,
                       ),
                       CustomInputField(
-                          fieldHeight: 53,
                           hintText: 'Password',
                           fieldWidth: 343,
                           fieldController: passwordController,
@@ -96,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   )),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.h),
+                padding: EdgeInsets.symmetric(vertical: 8.h),
                 child: CustomTextButton(
                   title: 'Forgot Password?',
                   onTap: () {},
@@ -107,16 +103,12 @@ class _LoginPageState extends State<LoginPage> {
                 btnHeight: 56,
                 btnWidth: 343,
                 onTap: () async {
-                  var formCorrect = formKey.currentState?.validate();
-                  log('===========> form correct: $formCorrect');
+                  // var formCorrect = formKey.currentState?.validate();
                 },
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.h),
-                child: CustomTextButton(
-                  title: 'Sign up',
-                  onTap: () {},
-                ),
+              CustomTextButton(
+                title: 'Sign up',
+                onTap: () {},
               ),
             ],
           ),

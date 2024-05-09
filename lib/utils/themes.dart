@@ -6,9 +6,15 @@ import 'package:google_fonts/google_fonts.dart';
 // Light theme for android
 final lightMaterialTheme = ThemeData(
     applyElevationOverlayColor: false,
+    textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+            textStyle: MaterialStatePropertyAll(GoogleFonts.rubik(
+      color: _secondaryColor,
+    )))),
     iconButtonTheme: const IconButtonThemeData(
         style: ButtonStyle(iconSize: MaterialStatePropertyAll(25))),
     inputDecorationTheme: InputDecorationTheme(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 10).h,
         isDense: false,
         errorBorder: OutlineInputBorder(
             borderSide: const BorderSide(
