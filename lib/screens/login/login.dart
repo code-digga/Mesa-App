@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mesa_app/screens/sign_up/sign_up.dart';
 import 'package:mesa_app/widgets/custom_button.dart';
 import 'package:mesa_app/widgets/custom_input_field.dart';
 import 'package:mesa_app/widgets/custom_text.dart';
@@ -58,11 +59,14 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 8.h,
               ),
-              const CustomText(
-                text: 'Log in with your school email and password.',
-                size: 14,
-                weight: FontWeight.normal,
-                overflow: TextOverflow.clip,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 70.w),
+                child: const CustomText(
+                  text: 'Log in with your school mail and password.',
+                  size: 14,
+                  weight: FontWeight.normal,
+                  overflow: TextOverflow.clip,
+                ),
               ),
               SizedBox(
                 height: 20.h,
@@ -108,7 +112,14 @@ class _LoginPageState extends State<LoginPage> {
               ),
               CustomTextButton(
                 title: 'Sign up',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      platformPageRoute(
+                        context: context,
+                        builder: (context) => const SignUpPage(),
+                      ));
+                },
               ),
             ],
           ),

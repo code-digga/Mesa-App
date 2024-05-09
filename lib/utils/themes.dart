@@ -1,11 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Light theme for android
 final lightMaterialTheme = ThemeData(
+    primarySwatch: MaterialColor(_mainColor.value, const {
+      50: _mainColor,
+      100: _mainColor,
+      200: _mainColor,
+      300: _mainColor,
+      400: _mainColor,
+      500: _mainColor,
+      600: _mainColor,
+      700: _mainColor,
+      800: _mainColor,
+      900: _mainColor,
+    }),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
     applyElevationOverlayColor: false,
+    appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: Brightness.dark,
+            statusBarColor: _mainColor,
+            statusBarIconBrightness: Brightness.light)),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
             textStyle: MaterialStatePropertyAll(GoogleFonts.rubik(
@@ -58,6 +80,8 @@ final lightMaterialTheme = ThemeData(
 // Dark theme configuration for android
 final darkTheme = lightMaterialTheme.copyWith(
     colorScheme: ColorScheme.fromSeed(seedColor: _textColor),
+    appBarTheme: lightMaterialTheme.appBarTheme
+        .copyWith(systemOverlayStyle: SystemUiOverlayStyle.light),
     cardColor: _secondaryColor,
     inputDecorationTheme: InputDecorationTheme(
         hintStyle: lightMaterialTheme.inputDecorationTheme.hintStyle
