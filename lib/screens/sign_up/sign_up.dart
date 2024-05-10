@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,6 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   var showPassword = false;
 
   var userType = 'Teacher';
+  var userTypes = ['Teacher', 'Student'];
 
   @override
   void dispose() {
@@ -77,6 +78,51 @@ class _SignUpPageState extends State<SignUpPage> {
                   key: formKey,
                   child: Column(
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const CustomText(
+                            text: 'I am a:',
+                            size: 16,
+                            weight: FontWeight.bold,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10.w, vertical: 0.h),
+                            width: 200.w,
+                            height: 50.h,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16).r,
+                                border: Border.all(color: Colors.grey)),
+                            child: DropdownButtonHideUnderline(
+                                child: DropdownButtonFormField<String>(
+                                    isExpanded: true,
+                                    value: userType,
+                                    decoration: const InputDecoration(
+                                        enabledBorder: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        focusedErrorBorder: InputBorder.none,
+                                        border: InputBorder.none),
+                                    validator: (value) => authValidator(value),
+                                    items: userTypes
+                                        .map((type) => DropdownMenuItem<String>(
+                                            value: type,
+                                            child: CustomText(text: type)))
+                                        .toList(),
+                                    onChanged: (newType) {
+                                      userType = newType ?? 'Teacher';
+                                      setState(() {});
+                                    })),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
                       CustomInputField(
                           hintText: 'Full name',
                           fieldWidth: 343,
