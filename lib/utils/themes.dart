@@ -34,7 +34,9 @@ final lightMaterialTheme = ThemeData(
       color: _secondaryColor,
     )))),
     iconButtonTheme: const IconButtonThemeData(
-        style: ButtonStyle(iconSize: MaterialStatePropertyAll(25))),
+        style: ButtonStyle(
+            iconSize: MaterialStatePropertyAll(25),
+            iconColor: MaterialStatePropertyAll(_textColor))),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding: const EdgeInsets.symmetric(horizontal: 10).h,
         isDense: false,
@@ -66,7 +68,14 @@ final lightMaterialTheme = ThemeData(
         ),
         hintStyle: GoogleFonts.rubik(color: _darkGrey, fontSize: 16.sp)),
     // brightness: Brightness.light,
-    cardColor: _secondaryColor,
+    cardTheme: CardTheme(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12).r,
+          side: const BorderSide(color: _lightGrey)),
+      color: _lightGrey,
+      elevation: 5.h,
+      shadowColor: _secondaryColor,
+    ),
     colorScheme: ColorScheme.fromSeed(seedColor: _mainColor),
     dialogBackgroundColor: _lightGrey,
     scaffoldBackgroundColor: _lightGrey,
@@ -79,10 +88,17 @@ final lightMaterialTheme = ThemeData(
 
 // Dark theme configuration for android
 final darkTheme = lightMaterialTheme.copyWith(
-    colorScheme: ColorScheme.fromSeed(seedColor: _textColor),
+    colorScheme: ColorScheme.fromSeed(seedColor: _lightGrey),
     appBarTheme: lightMaterialTheme.appBarTheme
         .copyWith(systemOverlayStyle: SystemUiOverlayStyle.light),
-    cardColor: _secondaryColor,
+    cardTheme: lightMaterialTheme.cardTheme.copyWith(
+      color: _textColor,
+      shadowColor: _lightGrey,
+    ),
+    iconButtonTheme: const IconButtonThemeData(
+        style: ButtonStyle(
+            iconSize: MaterialStatePropertyAll(25),
+            iconColor: MaterialStatePropertyAll(_lightGrey))),
     inputDecorationTheme: InputDecorationTheme(
         hintStyle: lightMaterialTheme.inputDecorationTheme.hintStyle
             ?.copyWith(color: _lightGrey)),

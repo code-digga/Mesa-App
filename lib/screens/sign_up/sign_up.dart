@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mesa_app/screens/home_page/home_page.dart';
 
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_input_field.dart';
@@ -161,6 +162,13 @@ class _SignUpPageState extends State<SignUpPage> {
                 btnWidth: 343,
                 onTap: () async {
                   // var formCorrect = formKey.currentState?.validate();
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      platformPageRoute(
+                        context: context,
+                        builder: (context) => const HomePage(),
+                      ),
+                      (route) => false);
                 },
               ),
               CustomTextButton(

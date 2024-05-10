@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mesa_app/screens/home_page/home_page.dart';
 import 'package:mesa_app/utils/themes.dart';
-
-import 'screens/login/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +23,7 @@ class MesaApp extends StatelessWidget {
       ensureScreenSize: true,
       child: PlatformProvider(
         builder: (context) => PlatformTheme(
-          themeMode: ThemeMode.light,
+          themeMode: ThemeMode.dark,
           materialLightTheme: lightMaterialTheme,
           materialDarkTheme: darkTheme,
           cupertinoDarkTheme: iosDarkTheme,
@@ -36,7 +35,7 @@ class MesaApp extends StatelessWidget {
               DefaultCupertinoLocalizations.delegate
             ],
             title: 'Mesa',
-            home: LoginPage(),
+            home: HomePage(),
             debugShowCheckedModeBanner: false,
           ),
         ),
