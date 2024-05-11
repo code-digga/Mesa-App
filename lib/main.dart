@@ -23,7 +23,7 @@ class MesaApp extends StatelessWidget {
       ensureScreenSize: true,
       child: PlatformProvider(
         builder: (context) => PlatformTheme(
-          themeMode: ThemeMode.dark,
+          themeMode: ThemeMode.light,
           materialLightTheme: lightMaterialTheme,
           materialDarkTheme: darkTheme,
           cupertinoDarkTheme: iosDarkTheme,
