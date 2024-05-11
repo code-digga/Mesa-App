@@ -12,6 +12,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var tileImagePaths = [
+    'assets/images/video_lessons.png',
+    'assets/images/courses.png',
+    'assets/images/results.png',
+    'assets/images/exam.png',
+    'assets/images/calendar.png',
+  ];
+
+  var tileTitles = [
+    'Video Lessons',
+    'Your Courses',
+    'Results',
+    'Exams and Tests',
+    'School calendar'
+  ];
+
+  List<Widget> dashboardPages = [];
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -63,7 +80,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 30.h,
             ),
-            const CustomText(text: 'Menu:'),
+            const CustomText(text: 'Quick Menu:'),
             SizedBox(
               height: 20.h,
             ),
@@ -75,10 +92,10 @@ class _HomePageState extends State<HomePage> {
                         childAspectRatio: 1.0,
                         crossAxisCount: 2),
                     children: List.generate(
-                        6,
+                        tileTitles.length,
                         (index) => _HomeCard(
-                              title: 'Home Title is a go',
-                              image: 'assets/images/empty_image.png',
+                              title: tileTitles[index],
+                              image: tileImagePaths[index],
                               goToPage: () {},
                             ))))
           ],

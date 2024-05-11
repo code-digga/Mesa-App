@@ -21,12 +21,13 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isDarkMode = PlatformTheme.of(context)?.isDark ?? false;
     return PlatformText(
       text,
       style: GoogleFonts.rubik(
         fontSize: size?.sp ?? 16.sp,
         fontWeight: weight ?? FontWeight.normal,
-        color: color,
+        color: color ?? (isDarkMode ? Colors.white : Colors.black),
       ),
       textAlign: alignment ?? TextAlign.center,
       overflow: overflow ?? TextOverflow.ellipsis,
