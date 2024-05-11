@@ -18,6 +18,7 @@ final lightMaterialTheme = ThemeData(
       800: _mainColor,
       900: _mainColor,
     }),
+    iconTheme: const IconThemeData(size: 25, color: _textColor),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     applyElevationOverlayColor: false,
     appBarTheme: const AppBarTheme(
@@ -102,6 +103,7 @@ final darkTheme = lightMaterialTheme.copyWith(
     inputDecorationTheme: InputDecorationTheme(
         hintStyle: lightMaterialTheme.inputDecorationTheme.hintStyle
             ?.copyWith(color: _lightGrey)),
+    iconTheme: lightMaterialTheme.iconTheme.copyWith(color: _lightGrey),
     scaffoldBackgroundColor: _textColor);
 
 // light theme configuration for iOS

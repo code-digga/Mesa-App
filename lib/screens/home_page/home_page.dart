@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mesa_app/screens/video_lessons/video_lesson.dart';
 import 'package:mesa_app/widgets/custom_text.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     'School calendar'
   ];
 
-  List<Widget> dashboardPages = [];
+  List<Widget> dashboardPages = [const VideoLessons()];
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -96,13 +97,20 @@ class _HomePageState extends State<HomePage> {
                         (index) => _HomeCard(
                               title: tileTitles[index],
                               image: tileImagePaths[index],
-                              goToPage: () {},
+                              goToPage: () => navigateTo(index),
                             ))))
           ],
         )),
       ),
     );
   }
+
+  navigateTo(int pageIndex) => Navigator.push(
+      context,
+      platformPageRoute(
+        context: context,
+        builder: (context) => dashboardPages[pageIndex],
+      ));
 }
 
 class _HomeCard extends StatelessWidget {
