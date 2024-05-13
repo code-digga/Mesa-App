@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mesa_app/screens/video_lessons/add_lesson.dart';
 import 'package:mesa_app/screens/video_lessons/lesson_page.dart';
 import 'package:mesa_app/widgets/custom_text.dart';
 
@@ -31,6 +32,24 @@ class _LessonsListState extends State<LessonsList> {
           size: 16,
           weight: FontWeight.bold,
         ),
+        trailingActions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16).r,
+            child: PlatformIconButton(
+              icon: Icon(
+                PlatformIcons(context).addCircled,
+                color: const Color(0xffE3562A),
+                size: 35,
+              ),
+              onPressed: () => Navigator.push(
+                  context,
+                  platformPageRoute(
+                    context: context,
+                    builder: (context) => const AddLessonPage(),
+                  )),
+            ),
+          )
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h).r,
@@ -142,25 +161,63 @@ class _LessonCard extends StatelessWidget {
 class CustomSearchDelegete extends SearchDelegate {
   @override
   List<Widget>? buildActions(BuildContext context) {
-    // TODO: implement buildActions
-    throw UnimplementedError();
+    return [
+      PlatformIconButton(
+        icon: const Icon(Icons.close),
+        onPressed: () {},
+      )
+    ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
-    throw UnimplementedError();
+    return PlatformIconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    throw UnimplementedError();
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+      child: ListView.separated(
+        itemCount: 20,
+        separatorBuilder: (context, index) => SizedBox(
+          height: 30.h,
+        ),
+        itemBuilder: (context, index) => InkWell(
+            onTap: () => Navigator.pushReplacement(
+                context,
+                platformPageRoute(
+                  context: context,
+                  builder: (context) => const LessonsPage(),
+                )),
+            child: const _LessonCard()),
+      ),
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    throw UnimplementedError();
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+      child: ListView.separated(
+        itemCount: 20,
+        separatorBuilder: (context, index) => SizedBox(
+          height: 30.h,
+        ),
+        itemBuilder: (context, index) => InkWell(
+            onTap: () => Navigator.pushReplacement(
+                context,
+                platformPageRoute(
+                  context: context,
+                  builder: (context) => const LessonsPage(),
+                )),
+            child: const _LessonCard()),
+      ),
+    );
   }
 }
