@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mesa_app/screens/courses/all_courses.dart';
+import 'package:mesa_app/screens/results/result_select_course.dart';
 import 'package:mesa_app/screens/video_lessons/video_lesson.dart';
 import 'package:mesa_app/widgets/custom_text.dart';
 
@@ -30,7 +31,11 @@ class _HomePageState extends State<HomePage> {
     'School calendar'
   ];
 
-  List<Widget> dashboardPages = [const VideoLessons(), const AllCourses()];
+  List<Widget> dashboardPages = [
+    const VideoLessons(),
+    const AllCourses(),
+    const ResultSelectCourse()
+  ];
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
