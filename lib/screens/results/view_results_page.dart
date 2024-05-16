@@ -103,8 +103,10 @@ class _ViewResultsPageState extends State<ViewResultsPage> {
                           Expanded(
                               child: ListView.separated(
                                   itemBuilder: (context, index) =>
-                                      const _ResultTableEntry(
-                                          name: 'Kamaldeen Ciroma Abdul',
+                                      _ResultTableEntry(
+                                          name: index.isEven
+                                              ? 'Bulus Hammed'
+                                              : 'Kamaldeen Ciroma Abdul',
                                           testScore: '25',
                                           examScore: '35',
                                           totalScore: '60'),

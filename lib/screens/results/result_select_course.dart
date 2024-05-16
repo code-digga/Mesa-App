@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mesa_app/screens/results/view_results_page.dart';
 import 'package:mesa_app/widgets/custom_text.dart';
 
+import '../../widgets/courses_tile.dart';
+
 class ResultSelectCourse extends StatefulWidget {
   const ResultSelectCourse({super.key});
 
@@ -26,7 +28,7 @@ class _ResultSelectCourseState extends State<ResultSelectCourse> {
         padding: const EdgeInsets.all(16).r,
         child: SafeArea(
             child: ListView.separated(
-                itemBuilder: (context, index) => _CourseTile(
+                itemBuilder: (context, index) => CourseTile(
                     onTap: () => Navigator.push(
                         context,
                         platformPageRoute(
@@ -38,41 +40,6 @@ class _ResultSelectCourseState extends State<ResultSelectCourse> {
                       height: 30.h,
                     ),
                 itemCount: 20)),
-      ),
-    );
-  }
-}
-
-class _CourseTile extends StatelessWidget {
-  const _CourseTile(
-      {required this.courseTitle, required this.courseCode, this.onTap});
-  final String courseTitle, courseCode;
-  final void Function()? onTap;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity.w,
-      padding: const EdgeInsets.all(10).r,
-      decoration: BoxDecoration(
-          color: const Color(0xff65AAEA),
-          borderRadius: BorderRadius.circular(16).r,
-          border: Border.all(color: Colors.grey.shade300)),
-      child: PlatformListTile(
-        onTap: onTap,
-        title: CustomText(
-          text: courseCode,
-          size: 16,
-          weight: FontWeight.w500,
-          alignment: TextAlign.start,
-          color: Colors.white,
-        ),
-        subtitle: CustomText(
-          text: courseTitle,
-          size: 14,
-          alignment: TextAlign.start,
-          overflow: TextOverflow.ellipsis,
-          color: Colors.white,
-        ),
       ),
     );
   }
