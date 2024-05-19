@@ -5,8 +5,8 @@ import 'package:mesa_app/widgets/custom_text.dart';
 
 class Calendar extends StatelessWidget {
   Calendar({super.key});
-  final currentDate = DateTime.now();
-  final endDate = DateTime.now().add(const Duration(days: 365));
+  final startDate = DateTime(DateTime.now().year, DateTime.august);
+  final endDate = DateTime(DateTime.now().year + 1, DateTime.july);
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -25,7 +25,7 @@ class Calendar extends StatelessWidget {
             children: [
               CustomText(
                 text:
-                    'Approved Academic Calendar for ${currentDate.year}/${endDate.year} session',
+                    'Approved Academic Calendar for ${startDate.year}/${endDate.year} session',
                 size: 22,
                 weight: FontWeight.bold,
                 overflow: TextOverflow.clip,
