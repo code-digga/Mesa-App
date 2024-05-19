@@ -6,7 +6,10 @@ import 'package:mesa_app/widgets/custom_button.dart';
 import 'package:mesa_app/widgets/custom_text.dart';
 
 class ExamOnboardingPage extends StatefulWidget {
-  const ExamOnboardingPage({super.key});
+  const ExamOnboardingPage(
+      {super.key, required this.isExam, required this.title});
+  final bool isExam;
+  final String title;
 
   @override
   State<ExamOnboardingPage> createState() => _ExamOnboardingPageState();
@@ -110,7 +113,10 @@ class _ExamOnboardingPageState extends State<ExamOnboardingPage> {
                           context,
                           platformPageRoute(
                             context: context,
-                            builder: (context) => const ExamsPage(),
+                            builder: (context) => ExamsPage(
+                              courseTitle: widget.title,
+                              isExams: widget.isExam,
+                            ),
                           ));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
