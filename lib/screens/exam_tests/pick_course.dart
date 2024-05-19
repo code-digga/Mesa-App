@@ -29,7 +29,7 @@ class _PickCourseState extends State<PickCourse> {
           child: SafeArea(
               child: ListView.separated(
                   itemBuilder: (context, index) => CourseTile(
-                      onTap: () => determineType(),
+                      onTap: () => determineType('PHY 223'),
                       courseTitle: 'Phyics of optoelectronic materials',
                       courseCode: 'PHY 223'),
                   separatorBuilder: (context, index) => SizedBox(
@@ -39,7 +39,7 @@ class _PickCourseState extends State<PickCourse> {
         ));
   }
 
-  determineType() async {
+  determineType(String courseCode) async {
     var type = await showPlatformModalSheet(
       context: context,
       material: MaterialModalSheetData(
@@ -55,7 +55,10 @@ class _PickCourseState extends State<PickCourse> {
             context,
             platformPageRoute(
               context: context,
-              builder: (context) => const ExamOnboardingPage(),
+              builder: (context) => ExamOnboardingPage(
+                title: courseCode,
+                isExam: type == 'exams',
+              ),
             ));
       }
     }
