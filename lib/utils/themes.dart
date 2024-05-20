@@ -31,13 +31,13 @@ final lightMaterialTheme = ThemeData(
             statusBarIconBrightness: Brightness.light)),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
-            textStyle: MaterialStatePropertyAll(GoogleFonts.rubik(
+            textStyle: WidgetStatePropertyAll(GoogleFonts.rubik(
       color: _secondaryColor,
     )))),
     iconButtonTheme: const IconButtonThemeData(
         style: ButtonStyle(
-            iconSize: MaterialStatePropertyAll(25),
-            iconColor: MaterialStatePropertyAll(_textColor))),
+            iconSize: WidgetStatePropertyAll(25),
+            iconColor: WidgetStatePropertyAll(_textColor))),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding: const EdgeInsets.symmetric(horizontal: 10).h,
         isDense: false,
@@ -82,9 +82,9 @@ final lightMaterialTheme = ThemeData(
     scaffoldBackgroundColor: _lightGrey,
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-            backgroundColor: const MaterialStatePropertyAll(_mainColor),
-            elevation: MaterialStatePropertyAll(0.h),
-            shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+            backgroundColor: const WidgetStatePropertyAll(_mainColor),
+            elevation: WidgetStatePropertyAll(0.h),
+            shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16).r)))));
 
 // Dark theme configuration for android
@@ -98,8 +98,8 @@ final darkTheme = lightMaterialTheme.copyWith(
     ),
     iconButtonTheme: const IconButtonThemeData(
         style: ButtonStyle(
-            iconSize: MaterialStatePropertyAll(25),
-            iconColor: MaterialStatePropertyAll(_lightGrey))),
+            iconSize: WidgetStatePropertyAll(25),
+            iconColor: WidgetStatePropertyAll(_lightGrey))),
     inputDecorationTheme: InputDecorationTheme(
         hintStyle: lightMaterialTheme.inputDecorationTheme.hintStyle
             ?.copyWith(color: _lightGrey)),

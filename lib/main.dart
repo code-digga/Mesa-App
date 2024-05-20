@@ -29,6 +29,7 @@ class MesaApp extends StatelessWidget {
           cupertinoDarkTheme: iosDarkTheme,
           cupertinoLightTheme: iosLightTheme,
           builder: (context) => const PlatformApp(
+            color: Color(0xffE3562A),
             localizationsDelegates: [
               DefaultMaterialLocalizations.delegate,
               DefaultWidgetsLocalizations.delegate,

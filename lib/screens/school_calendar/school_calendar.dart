@@ -5,8 +5,8 @@ import 'package:mesa_app/widgets/custom_text.dart';
 
 class Calendar extends StatelessWidget {
   Calendar({super.key});
-  final startDate = DateTime(DateTime.now().year, DateTime.august);
-  final endDate = DateTime(DateTime.now().year + 1, DateTime.july);
+  final startDate = DateTime(DateTime.now().year, DateTime.august, 3);
+  final endDate = DateTime(DateTime.now().year + 1, DateTime.july, 26);
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -34,7 +34,7 @@ class Calendar extends StatelessWidget {
                 height: 20.h,
               ),
               const CustomText(
-                text: 'First Semester (24 weeks)',
+                text: 'First Semester (22 weeks)',
                 size: 20,
               ),
               SizedBox(
@@ -42,7 +42,7 @@ class Calendar extends StatelessWidget {
               ),
               const _CalendarDateRow(
                 title: 'Resumption and Registration',
-                period: '4',
+                period: '2',
               ),
               SizedBox(
                 height: 15.h,
@@ -53,6 +53,66 @@ class Calendar extends StatelessWidget {
               ),
               SizedBox(
                 height: 15.h,
+              ),
+              const _CalendarDateRow(
+                title: 'Test and Assessments',
+                period: '2',
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              const _CalendarDateRow(
+                title: 'Lectures continue',
+                period: '8',
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              const _CalendarDateRow(
+                title: 'Semester Examinations',
+                period: '2',
+              ),
+              SizedBox(
+                height: 30.h,
+              ),
+              const CustomText(
+                text: 'Second Semester (22 weeks)',
+                size: 20,
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              const _CalendarDateRow(
+                title: 'Resumption and Registration',
+                period: '2',
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              const _CalendarDateRow(
+                title: 'Lectures resume',
+                period: '8',
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              const _CalendarDateRow(
+                title: 'Test and Assessments',
+                period: '2',
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              const _CalendarDateRow(
+                title: 'Lectures continue',
+                period: '8',
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              const _CalendarDateRow(
+                title: 'Semester Examinations',
+                period: '2',
               ),
             ],
           ),
