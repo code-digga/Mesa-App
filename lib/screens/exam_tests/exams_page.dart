@@ -94,20 +94,13 @@ class _ExamsPageState extends State<ExamsPage> {
                   ),
                 ],
               ),
-              // Align(
-              //     alignment: Alignment.center,
-              //     child: CustomText(
-              //       text:
-              //           '0$clockMin : ${clockSecond < 10 ? '0$clockSecond' : clockSecond}',
-              //       size: 22,
-              //       weight: FontWeight.bold,
-              //       color: const Color(0xffE3562A),
-              //     )),
               SizedBox(
                 height: 30.h,
               ),
               Expanded(
                   child: ListView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.manual,
                 children: [
                   ...List.generate(
                       numberOfQuestions,
@@ -146,142 +139,50 @@ class _ExamsPageState extends State<ExamsPage> {
   }
 }
 
-// class QuestionAndAnswerTile extends StatefulWidget {
-//   const QuestionAndAnswerTile(
-//       {super.key,
-//       required this.hasOptions,
-//       required this.question,
-//       required this.optionsOrKeywords,
-//       required this.questionNumber,
-//       required this.callback,
-//       required this.answer});
-//   final bool hasOptions;
-//   final String question, questionNumber, answer;
-//   final List<String> optionsOrKeywords;
-//   final void Function(String) callback;
-
-//   @override
-//   State<QuestionAndAnswerTile> createState() => _QuestionAndAnwerTileState();
-// }
-
-// class _QuestionAndAnwerTileState extends State<QuestionAndAnswerTile> {
-//   late int? selectedOption = widget.answer.isNotEmpty
-//       ? widget.optionsOrKeywords.indexOf(widget.answer)
-//       : null;
-//   late TextEditingController answerBoxController =
-//       TextEditingController(text: widget.answer);
-
-//   // @override
-//   // void initState() {
-//   //   super.initState();
-//   //   answerBoxController = TextEditingController(text: widget.answer);
-//   //   selectedOption = widget.answer.isNotEmpty
-//   //       ? widget.optionsOrKeywords.indexOf(widget.answer)
-//   //       : null;
-//   // }
-
-//   @override
-//   void dispose() {
-//     answerBoxController.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Row(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             CustomText(
-//               text: widget.questionNumber,
-//               size: 18,
-//               alignment: TextAlign.start,
-//             ),
-//             SizedBox(
-//               width: 20.w,
-//             ),
-//             Expanded(
-//               child: CustomText(
-//                 text: widget.question,
-//                 size: 18,
-//                 alignment: TextAlign.start,
-//                 overflow: TextOverflow.clip,
-//               ),
-//             ),
-//           ],
-//         ),
-//         SizedBox(
-//           height: 10.h,
-//         ),
-//         if (widget.hasOptions)
-//           ...List.generate(
-//               widget.optionsOrKeywords.length,
-//               (index) => Padding(
-//                     padding: EdgeInsets.only(bottom: 5.h),
-//                     child: SizedBox(
-//                       width: 300.w,
-//                       child: Align(
-//                         alignment: Alignment.centerLeft,
-//                         child: ChoiceChip(
-//                             onSelected: (_) {
-//                               setState(() {
-//                                 selectedOption = index;
-//                               });
-//                               widget.callback(widget.optionsOrKeywords[index]);
-//                             },
-//                             label: CustomText(
-//                               text: widget.optionsOrKeywords[index],
-//                               size: 18,
-//                               alignment: TextAlign.start,
-//                               overflow: TextOverflow.clip,
-//                             ),
-//                             selected: selectedOption == index),
-//                       ),
-//                     ),
-//                   )),
-//         SizedBox(
-//           height: 20.h,
-//         ),
-//         if (!widget.hasOptions)
-//           SizedBox(
-//             height: 100.h,
-//             width: 300.w,
-//             child: Padding(
-//               padding: const EdgeInsets.all(10.0).r,
-//               child: PlatformTextFormField(
-//                 controller: answerBoxController,
-//                 keyboardType: TextInputType.text,
-//                 expands: true,
-//                 maxLines: null,
-//                 minLines: null,
-//                 onFieldSubmitted: (value) => widget.callback(value.trim()),
-//               ),
-//             ),
-//           )
-//       ],
-//     );
-//   }
-// }
-
-class QuestionAndAnswerTile extends StatelessWidget {
+class QuestionAndAnswerTile extends StatefulWidget {
   const QuestionAndAnswerTile(
       {super.key,
       required this.hasOptions,
       required this.question,
-      required this.questionNumber,
-      required this.answer,
       required this.optionsOrKeywords,
-      required this.callback});
-
+      required this.questionNumber,
+      required this.callback,
+      required this.answer});
   final bool hasOptions;
   final String question, questionNumber, answer;
   final List<String> optionsOrKeywords;
   final void Function(String) callback;
 
   @override
+  State<QuestionAndAnswerTile> createState() => _QuestionAndAnwerTileState();
+}
+
+class _QuestionAndAnwerTileState extends State<QuestionAndAnswerTile>
+    with AutomaticKeepAliveClientMixin {
+  late int? selectedOption = widget.answer.isNotEmpty
+      ? widget.optionsOrKeywords.indexOf(widget.answer)
+      : null;
+  late TextEditingController answerBoxController =
+      TextEditingController(text: widget.answer);
+
+  @override
+  void initState() {
+    super.initState();
+    answerBoxController = TextEditingController(text: widget.answer);
+    selectedOption = widget.answer.isNotEmpty
+        ? widget.optionsOrKeywords.indexOf(widget.answer)
+        : null;
+  }
+
+  @override
+  void dispose() {
+    answerBoxController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -289,7 +190,7 @@ class QuestionAndAnswerTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomText(
-              text: questionNumber,
+              text: widget.questionNumber,
               size: 18,
               alignment: TextAlign.start,
             ),
@@ -298,7 +199,7 @@ class QuestionAndAnswerTile extends StatelessWidget {
             ),
             Expanded(
               child: CustomText(
-                text: question,
+                text: widget.question,
                 size: 18,
                 alignment: TextAlign.start,
                 overflow: TextOverflow.clip,
@@ -309,50 +210,58 @@ class QuestionAndAnswerTile extends StatelessWidget {
         SizedBox(
           height: 10.h,
         ),
-        if (hasOptions)
+        if (widget.hasOptions)
           ...List.generate(
-              optionsOrKeywords.length,
+              widget.optionsOrKeywords.length,
               (index) => Padding(
                     padding: EdgeInsets.only(bottom: 5.h),
-                    child: SizedBox(
-                      width: 300.w,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: ChoiceChip(
-                            onSelected: (_) {
-                              callback(optionsOrKeywords[index]);
-                            },
-                            label: CustomText(
-                              text: optionsOrKeywords[index],
-                              size: 18,
-                              alignment: TextAlign.start,
-                              overflow: TextOverflow.clip,
-                            ),
-                            selected: answer == optionsOrKeywords[index]),
+                    child: Focus(
+                      child: SizedBox(
+                        width: 300.w,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: ChoiceChip(
+                              onSelected: (_) {
+                                setState(() {
+                                  selectedOption = index;
+                                });
+                                widget
+                                    .callback(widget.optionsOrKeywords[index]);
+                              },
+                              label: CustomText(
+                                text: widget.optionsOrKeywords[index],
+                                size: 18,
+                                alignment: TextAlign.start,
+                                overflow: TextOverflow.clip,
+                              ),
+                              selected: selectedOption == index),
+                        ),
                       ),
                     ),
                   )),
         SizedBox(
           height: 20.h,
         ),
-        if (!hasOptions)
+        if (!widget.hasOptions)
           SizedBox(
             height: 100.h,
             width: 300.w,
             child: Padding(
               padding: const EdgeInsets.all(10.0).r,
               child: PlatformTextFormField(
-                // controller: answerBoxController,
-                initialValue: answer,
+                controller: answerBoxController,
                 keyboardType: TextInputType.text,
                 expands: true,
                 maxLines: null,
                 minLines: null,
-                onFieldSubmitted: (value) => callback(value.trim()),
+                onFieldSubmitted: (value) => widget.callback(value.trim()),
               ),
             ),
           )
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
