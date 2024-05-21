@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mesa_app/widgets/custom_button.dart';
 import 'package:mesa_app/widgets/custom_text.dart';
 
 class ExamsPage extends StatefulWidget {
@@ -72,13 +73,13 @@ class _ExamsPageState extends State<ExamsPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ValueListenableBuilder(
                     valueListenable: clockMin,
                     builder: (_, value, __) => CustomText(
                       text: '0$value :',
-                      size: 22,
+                      size: 24,
                       weight: FontWeight.bold,
                       color: const Color(0xffE3562A),
                     ),
@@ -87,11 +88,21 @@ class _ExamsPageState extends State<ExamsPage> {
                     valueListenable: clockSecond,
                     builder: (_, value, __) => CustomText(
                       text: ' ${value < 10 ? '0$value' : value}',
-                      size: 22,
+                      size: 24,
                       weight: FontWeight.bold,
                       color: const Color(0xffE3562A),
                     ),
                   ),
+                  SizedBox(
+                    width: 100.w,
+                  ),
+                  Expanded(
+                      child: CustomButton(
+                    btnText: 'Submit',
+                    btnHeight: 50,
+                    btnWidth: 200,
+                    onTap: () {},
+                  ))
                 ],
               ),
               SizedBox(
