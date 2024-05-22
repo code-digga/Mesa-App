@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PrefsStorage {
+mixin PrefsStorage {
   storeData({String? key, String? value}) async {
     var prefs = await SharedPreferences.getInstance();
     prefs.setString(key ?? '', value ?? '');
