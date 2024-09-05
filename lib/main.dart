@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mesa_app/screens/home_page/home_page.dart';
 import 'package:mesa_app/utils/themes.dart';
@@ -9,7 +10,7 @@ import 'package:mesa_app/utils/themes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(const MesaApp());
+  runApp(const ProviderScope(child: MesaApp()));
 }
 
 class MesaApp extends StatelessWidget {
